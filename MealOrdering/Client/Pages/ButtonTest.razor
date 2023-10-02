@@ -1,0 +1,35 @@
+﻿@page "/buttonTest"
+@page "/buttons"
+
+
+<h3>@title</h3>
+
+<div class="form-group">
+    <CustomEditComponent Caption="Show Message" OnClick="@changeTitle"></CustomEditComponent>
+    <CustomEditComponent Caption="Edit Caption" OnClick="@showConfirmation"></CustomEditComponent>
+
+
+</div>
+@code {
+    [CascadingParameter]
+    IModalService Modal { get; set; } 
+    [Inject]
+    ModalManager ModalManager { get; set; }
+
+    private String title = "";
+    private async void changeTitle()
+    {
+        await ModalManager.ShowMessageAsync("Show Message","Record deleted",3000);
+
+        //ModalParameters mParams = new ModalParameters();
+        //mParams.Add("Message", "Bu bir test popop denemesinidr.");
+        //Modal.Show<ShowMessageModalComponent>("Counter Popop Page",mParams);
+    }
+
+    async Task showConfirmation()
+    {
+        var res = await ModalManager.ConfirmationAsync("Confirmation", "Are you sure that it will be deleted?");
+        if (res) title = "Tes just clicked";
+        else title = "No just clicked";
+    }
+}

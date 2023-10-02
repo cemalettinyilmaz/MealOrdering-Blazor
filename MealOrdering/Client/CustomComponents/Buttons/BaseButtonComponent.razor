@@ -1,0 +1,25 @@
+﻿
+
+
+@code {
+    [Parameter]
+    public string Caption { get; set; } = "Edit";
+    [Parameter]
+    public string Color { get; set; } = "primary";
+    [Parameter]
+    public string Icon { get; set; } = "pencil";
+    [Parameter]
+    public bool IsSmall { get; set; } = false;
+    [Parameter]
+    public string ToolTipStr { get; set; } = "";
+    [Parameter]
+    public bool IsOutline { get; set; } = false;
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter]
+    public bool IsBusy { get; set; } = false;
+    [Parameter]
+    public string IsBusyCaption { get; set; } = "Busy";
+
+}
+
